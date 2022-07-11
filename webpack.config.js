@@ -1,6 +1,7 @@
 const path = require('path');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -18,8 +19,9 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          { loader: 'style-loader' },
+          { loader: MiniCssExtractPlugin.loader },
           { loader: 'css-loader' },
+          { loader: 'postcss-loader' },
         ]
       }
     ]
@@ -27,10 +29,14 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: '/public/index.html',
+      inject: true,
     }),
     new webpack.ProvidePlugin({
-      'React': 'react'
+      'React': 'react',
     }),
+    new MiniCssExtractPlugin({
+      filename: 'index.css',
+    })
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
