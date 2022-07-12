@@ -51,8 +51,9 @@ function Segmented({
 
   return (
     <div className="grid grid-flow-col border border-gray-200 rounded p-1 divide-x divide-gray-200">
-      {choices.map((choice) => (
+      {choices.map((choice, index) => (
         <Item
+          key={index}
           choice={choice}
           isSelected={isSelected(choice)}
           isDisabled={isDisabled(choice)}
