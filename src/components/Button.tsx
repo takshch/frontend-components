@@ -21,11 +21,13 @@ function Button({
   };
 
   const buttonClass = classNames('p-3 rounded w-full', {
-    'bg-gray-600 text-white': disabled,
+    'border border-gray-600 text-gray-600': disabled,
+    'border border-green-700': !disabled && color === 'green',
+    'border border-red-600': !disabled && color === 'red',
     'bg-green-700 text-white': isStyle('regular', 'green'),
     'bg-red-600 text-white': isStyle('regular', 'red'),
-    'text-green-700 border-2 border-green-700': isStyle('outline', 'green'),
-    'text-red-600 border-2 border-red-600': isStyle('outline', 'red'),
+    'text-green-700': isStyle('outline', 'green'),
+    'text-red-600': isStyle('outline', 'red'),
   });
 
   return (
